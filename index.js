@@ -75,7 +75,6 @@ bot.on('message', msg => {
               answserTime = true;
               listOfPlayersWhoAnswered = [];
               displayQuestion(quiz.content[tempI], msg.channel);
-              //resolve(quiz.content[tempI]);
             }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
             previousTime = previousTime + previousQuestionTime;
             previousQuestionTime = quiz.content[i].temps;
@@ -83,7 +82,6 @@ bot.on('message', msg => {
               //Display Question after previous ended
               answserTime = false;
               displayScore(msg.channel);
-              //resolve(quiz.content[tempI]);
             }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
           });
           i++;
@@ -92,7 +90,6 @@ bot.on('message', msg => {
           //END of Game
           state = false;
           msg.channel.send("**Fin du Quiz !**");
-          //resolve(quiz.content[tempI]);
         }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
       }
     }
@@ -124,6 +121,16 @@ function displayQuestion(qObject, channel) {
       qMsgSent.react(emojiAnswers[k - 1]);
       k++;
     }
+    setTimeout(function () {
+      var qEditMessage = '> **Question ' + qObject.numero + '**\n> ' + qObject.question; 
+      j = 1;
+      while (qObject.reponses[j] != null) {
+        if (j != qObject.result) qEditMessage = qEditMessage + "\n>     ❌ " + qObject.reponses[j];
+        else qEditMessage = qEditMessage + "\n>     :white_check_mark: " + qObject.reponses[j];
+        j++;
+      }
+      qMsgSent.edit(qEditMessage);
+    }, qObject.temps * 1000);
   }).catch(err => {
     console.log(err);
   });
