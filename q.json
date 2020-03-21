@@ -1,0 +1,28 @@
+{
+    "title":"Quiz de Test",
+    "content":{
+        "1":{
+            "question":"Ceci est la question 1 ? Ceci est la question 1 ?Ceci est la question 1 ? Ceci est la question 1 ?",
+            "numero": 1,
+            "reponses":{
+                "1":"Réponse 1",
+                "2":"Réponse 2",
+                "3":"Réponse 3",
+                "4":"Réponse 4"
+            },
+            "result":2,
+            "temps":2
+        },
+        "2":{
+            "question":"Ceci est la question 2 ? Ceci est la question 2 ?Ceci est la question 2 ? Ceci est la question 2 ?",
+            "numero": 2,
+            "reponses":{
+                "1":"Réponse 1",
+                "2":"Réponse 2",
+                "3":"Réponse 3"
+            },
+            "result":3,
+            "temps":10
+        }
+    }
+}
