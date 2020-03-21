@@ -7,7 +7,6 @@ const TOKEN = process.env.TOKEN;
 const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
 const emojiAnswers = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣'];
 
-
 var state = false;
 var quiz;
 var answserTime = false;
