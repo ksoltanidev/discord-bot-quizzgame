@@ -4,7 +4,7 @@ fs = require('fs');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
-const emojiAnswers = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣'];
+const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
 var state = false;
 var quiz;
@@ -14,7 +14,6 @@ var listOfPlayersWhoAnswered = [];
 var currentQuestionNumber = 0;
 var questionMsgId;
 var scores = {};
-//console.log(array1.sort(function(a,b){if (a.s < b.s) return -1; else if (a.s > b.s) return 1}));
 
 bot.login(TOKEN);
 
@@ -30,10 +29,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
       var correctAnswer = quiz.content[currentQuestionNumber].result;
       if (emojiAnswers.indexOf(reaction.emoji.name) + 1 == correctAnswer) {
         if (scores[user.tag] == null) scores[user.tag] = 0;
-        scores[user.tag] = scores[user.tag] + Math.max((1000 - 25 * listOfPlayersWhoAnswered.length), 500);
+        scores[user.tag] = scores[user.tag] + Math.max((40 - 1 * listOfPlayersWhoAnswered.length), 20);
       }
       listOfPlayersWhoAnswered.push(user.tag);
-      console.log(scores);
     }
     //const userReactions = reaction.cache.filter(reaction => reaction.users.cache.has(user.id));
     reaction.users.remove(user.id);
@@ -59,8 +57,7 @@ bot.on('message', msg => {
         var previousQuestionTime = 10; //timer before first question
 
         //SEND TITLE:
-        msg.channel.send("**LE Quiz '"+ quiz.title + "' VA COMMENCER DANS " + previousQuestionTime + "SECONDES !**");
-        console.log("**LE Quiz '"+ quiz.title + "' VA COMMENCER DANS " + previousQuestionTime + "SECONDES !**");
+        msg.channel.send("**Le Quiz '" + quiz.title + "' va commencer dans " + previousQuestionTime + " secondes !**");
         //GAME START:
 
         //Sending Questions :
@@ -68,19 +65,18 @@ bot.on('message', msg => {
           new Promise(function (resolve, reject) {
             var tempI = i;
             setTimeout(function () {
-              //Display Question after previous ended
+              //Display Question 
               currentQuestionNumber = tempI;
-              answserTime = true;
               listOfPlayersWhoAnswered = [];
               displayQuestion(quiz.content[tempI], msg.channel);
-            }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
+            }, ((previousQuestionTime + previousTime + (i - 1) * 10) - 5) * 1000);
             previousTime = previousTime + previousQuestionTime;
             previousQuestionTime = quiz.content[i].temps;
             setTimeout(function () {
-              //Display Question after previous ended
+              //Display Scores
               answserTime = false;
               displayScore(msg.channel);
-            }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
+            }, (previousQuestionTime + previousTime + (i - 1) * 10) * 1000);
           });
           i++;
         }
@@ -88,48 +84,104 @@ bot.on('message', msg => {
           //END of Game
           state = false;
           msg.channel.send("**Fin du Quiz !**");
-        }, (previousQuestionTime + previousTime + (i-1)*10) * 1000);
+          displayFullScores(msg.channel);
+        }, (previousQuestionTime + previousTime + (i - 1) * 10) * 1000);
       }
     }
   }
 });
 
-function displayScore(channel){
-    //Send question message :
-    var qMessage = '> **SCORES : **';
-    var j = 1;
-    for(var userTag in scores) {
-      qMessage = qMessage + "\n> - " + userTag + " : " +scores[userTag];
+function displayFullScores(channel) {
+  var sortable = [];
+
+  for (var player in scores) {
+    sortable.push([player, scores[player]]);
+  }
+  sortable.sort(function (a, b) {
+    return b[1] - a[1];
+  });
+  //sending full scores :
+  channel.send('> **Tableau des scores : **');
+  var sMessages = [];
+  //Send question message :
+  var qMessage = "";
+  var countLines = 0;
+  for (var userRank in sortable) {
+    var rank = parseInt(userRank) + 1;
+    if (rank != 1) qMessage = qMessage + "> #" + rank + " " + sortable[userRank][0] + " : " + sortable[userRank][1] + "\n";
+    else qMessage = qMessage + "> **#" + rank + " " + sortable[userRank][0] + " : " + sortable[userRank][1] + " :crown:**\n";
+    countLines++;
+    if (countLines == 25) {
+      sMessages.push(qMessage);
+      countLines = 0;
+      qMessage = "";
     }
-    channel.send(qMessage);
+  }
+  if (countLines != 0) sMessages.push(qMessage);
+  for (msg in sMessages) {
+    channel.send(sMessages[msg]);
+  }
+}
+
+function displayScore(channel) {
+  var sortable = [];
+  for (var player in scores) {
+    sortable.push([player, scores[player]]);
+  }
+  sortable.sort(function (a, b) {
+    return b[1] - a[1];
+  });
+  //Send question message :
+  var qMessage = '> **TOP 10 / ' + sortable.length + ' : **';
+  for (var userRank in sortable) {
+    var rank = parseInt(userRank) + 1;
+    if (rank == 11) break;
+    if (rank != 1) qMessage = qMessage + "\n> #" + rank + " " + sortable[userRank][0] + " : " + sortable[userRank][1];
+    else qMessage = qMessage + "\n> **#" + rank + " " + sortable[userRank][0] + " : " + sortable[userRank][1] + " :crown:**";
+  }
+  channel.send(qMessage);
 }
 
 function displayQuestion(qObject, channel) {
   //Send question message :
-  var qMessage = '> **Question ' + qObject.numero + '**\n> ' + qObject.question;
+  var qMessage = '> **Question ' + qObject.numero + "| Durée : " + qObject.temps + 's**\n> ' + qObject.question;
   var j = 1;
   while (qObject.reponses[j] != null) {
-    qMessage = qMessage + "\n>     - " + qObject.reponses[j];
+    qMessage = qMessage + "\n>     " + emojiAnswers[j - 1] + " " + qObject.reponses[j];
     j++;
   }
-  channel.send(qMessage).then(qMsgSent => {
-    questionMsgId = qMsgSent.id;
-    var k = 1;
-    while (qObject.reponses[k] != null) {
-      qMsgSent.react(emojiAnswers[k - 1]);
-      k++;
-    }
-    setTimeout(function () {
-      var qEditMessage = '> **Question ' + qObject.numero + '**\n> ' + qObject.question; 
-      j = 1;
-      while (qObject.reponses[j] != null) {
-        if (j != qObject.result) qEditMessage = qEditMessage + "\n>     ❌ " + qObject.reponses[j];
-        else qEditMessage = qEditMessage + "\n>     :white_check_mark: " + qObject.reponses[j];
-        j++;
+  channel.send('> **Question ' + qObject.numero + " dans 5 secondes !**\n> **Durée : " + qObject.temps + "s**")
+    .then(qMsgSent => {
+      questionMsgId = qMsgSent.id;
+      if (!qObject.troll){
+        var k = 1;
+        while (k != 10 && qObject.reponses[k] != null) {
+          qMsgSent.react(emojiAnswers[k - 1]);
+          k++;
+        }
+      } else {
+        var k = 9;
+        while (k != 0) {
+          if (qObject.reponses[k] != null) qMsgSent.react(emojiAnswers[k - 1]);
+          k--;
+        }
       }
-      qMsgSent.edit(qEditMessage);
-    }, qObject.temps * 1000);
-  }).catch(err => {
-    console.log(err);
-  });
+      //display Question after 5s.
+      setTimeout(function () {
+        answserTime = true;
+        qMsgSent.edit(qMessage);
+      }, 5 * 1000);
+      setTimeout(function () {
+        var qEditMessage = '> **Question ' + qObject.numero + '**\n> ' + qObject.question;
+        j = 1;
+        while (qObject.reponses[j] != null) {
+          if (j != qObject.result) qEditMessage = qEditMessage + "\n>     ❌ " + qObject.reponses[j];
+          else qEditMessage = qEditMessage + "\n>     :white_check_mark: " + qObject.reponses[j];
+          j++;
+        }
+        qMsgSent.edit(qEditMessage);
+      }, (qObject.temps + 5) * 1000);
+    }).catch(err => {
+      console.log(err);
+    });
 }
