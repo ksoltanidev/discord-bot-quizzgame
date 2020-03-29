@@ -1,0 +1,74 @@
+{
+    "title":"Quiz de Test 2",
+    "pauses":20,
+    "content":{
+        "1":{
+            "question":"Combien de donjons y a t-il aujourd'hui ? ",
+            "numero": 1,
+            "reponses":{
+                "1":"22",
+                "2":"25",
+                "3":"27"
+            },
+            "result":2,
+            "temps":10
+        },
+        "2":{
+            "question":"Dans quel donjon peut-on trouver le [Roueur manuel] (Masse 2M)",
+            "numero": 2,
+            "reponses":{
+                "1":"Maraudon",
+                "2":"Prison d'Hurlevent",
+                "3":"Gnomeregan"
+            },
+            "result":3,
+            "temps":10
+        },
+        "3":{
+            "question":"Quel est le prix minimum d'une monture +60% ? ",
+            "numero": 3,
+            "reponses":{
+                "1":"100 :po:",
+                "2":"80 :po:",
+                "3":"72 :po:",
+                "4":"64 :po:"
+            },
+            "result":4,
+            "temps":10
+        },
+        "4":{
+            "question":"Bob a 10 pièces d'or. Il achète 5[Ankh] à 18pa/unité. Conbien lui reste-t-il de pièces d'or ?",
+            "numero": 4,
+            "reponses":{
+                "1":"10 pièces d'or",
+                "2":"9,10 pièces d'or",
+                "3":"9 pièces d'or",
+                "4":"8.90 pièces d'or"
+            },
+            "result":3,
+            "temps":10
+        },
+        "5":{
+            "question":"La réponse est en gras",
+            "numero": 5,
+            "reponses":{
+                "1":"en gras",
+                "2":"**en gras**"
+            },
+            "result":1,
+            "temps":5
+        },
+        "6":{
+            "question":"La réponse est 'en gras'",
+            "numero": 6,
+            "reponses":{
+                "1":"en gras",
+                "2":"**en gras**"
+            },
+            "result":1,
+            "temps":5,
+            "troll":true
+        }
+    }
+}
+

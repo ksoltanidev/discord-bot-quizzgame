@@ -1,5 +1,6 @@
 {
     "title":"Quiz de Test",
+    "pauses":20,
     "content":{
         "1":{
             "question":"Ceci est la question 1 ? Ceci est la question 1 ?Ceci est la question 1 ? Ceci est la question 1 ?",

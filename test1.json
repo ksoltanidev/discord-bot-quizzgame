@@ -1,0 +1,73 @@
+{
+    "title":"Quiz de Test",
+    "pauses":20,
+    "content":{
+        "1":{
+            "question":"Lorsqu'un pancake tombe dans la neige avant le 31 décembre, on dit :",
+            "numero": 1,
+            "reponses":{
+                "1":"A Que c'est un pancake qui est tombé dans la neige avant le 31 décembre ?",
+                "2":"B Que c'est une Kipa surgelée ?",
+                "3":"C Que c'est un frizby comestible ?",
+                "4":"D La réponse D"
+            },
+            "result":3,
+            "temps":10
+        },
+        "2":{
+            "question":"Lorsqu'un Pancake prend l'avion à destination de Toronto, et qui s'en va faire une escale technique à St Claude, qui c'est qu'on va dire de ce pancake là ?",
+            "numero": 2,
+            "reponses":{
+                "1":"A Qu'il n'est pas encore arrivé à Toronto ?",
+                "2":"B Qu'il est supposé arriver à Toronto, mais qu'on l'attend toujours ?",
+                "3":"C Qu'est ce qu'il fout ce maudit pancake tabernacle ?",
+                "4":"D La réponse D"
+            },
+            "result":3,
+            "temps":10
+        },
+        "3":{
+            "question":"Lorsqu'un pancake est invité à une Bar-mitsva, est ce qu'on doit :",
+            "numero": 3,
+            "reponses":{
+                "1":"AL'inciter à aller boire à l'open barmitsva",
+                "2":"B Lui offrir et lui présenter Raymond Barmitsva",
+                "3":"C Lui présenter des malabarmitzva",
+                "4":"D La réponse D"
+            },
+            "result":2,
+            "temps":10
+        },
+        "4":{
+            "question":"Romeo et ? ",
+            "numero": 4,
+            "reponses":{
+                "1":"Hardy",
+                "2":"Juliette"
+            },
+            "result":1,
+            "temps":10
+        },
+        "5":{
+            "question":"Laurel et ?",
+            "numero": 5,
+            "reponses":{
+                "1":"Hardy",
+                "2":"Juliette"
+            },
+            "result":2,
+            "temps":10
+        },
+        "6":{
+            "question":"Jacques Dutronc et ?",
+            "numero": 6,
+            "reponses":{
+                "1":"Hardy",
+                "2":"Juliette"
+            },
+            "result":2,
+            "temps":10,
+            "troll":true
+        }
+    }
+}
