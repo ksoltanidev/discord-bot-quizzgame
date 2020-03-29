@@ -2,10 +2,8 @@ const Discord = require('discord.js');
 fs = require('fs');
 
 const bot = new Discord.Client();
-//const TOKEN = process.env.TOKEN;
-//const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
-const TOKEN = "NDAzOTE1NDU4NTI2NDQ1NTc4.XnapEA.7Gh8f3AWnTGjY-dQM9igEQU4AdA";
-const GOLDMASTER_ID = 202846457030508544;
+const TOKEN = process.env.TOKEN;
+const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
 var state = false;
