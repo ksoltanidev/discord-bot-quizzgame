@@ -2,8 +2,10 @@ const Discord = require('discord.js');
 fs = require('fs');
 
 const bot = new Discord.Client();
-const TOKEN = process.env.TOKEN;
-const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
+//const TOKEN = process.env.TOKEN;
+//const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
+const TOKEN = "NDAzOTE1NDU4NTI2NDQ1NTc4.XoEQ6g.HfmT5YI5a2TrF423XEP0zPzwt88";
+const GOLDMASTER_ID = "202846457030508544";
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
 var state = false;
@@ -11,6 +13,7 @@ var quiz;
 var answserTime = false;
 
 var listOfPlayersWhoAnswered = [];
+var listOfPlayersWhoAnsweredRight = [];
 var currentQuestionNumber = 0;
 var questionMsgId;
 var scores = {};
@@ -29,7 +32,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
       var correctAnswer = quiz.content[currentQuestionNumber].result;
       if (emojiAnswers.indexOf(reaction.emoji.name) + 1 == correctAnswer) {
         if (scores[user.tag] == null) scores[user.tag] = 0;
-        scores[user.tag] = scores[user.tag] + Math.max((40 - 1 * listOfPlayersWhoAnswered.length), 20);
+        scores[user.tag] = scores[user.tag] + Math.max((40 - 1 * listOfPlayersWhoAnsweredRight.length), 20);
+        listOfPlayersWhoAnsweredRight.push(user.tag);
       }
       listOfPlayersWhoAnswered.push(user.tag);
     }
@@ -72,6 +76,7 @@ bot.on('message', msg => {
                 //Display Question 
                 currentQuestionNumber = tempI;
                 listOfPlayersWhoAnswered = [];
+                listOfPlayersWhoAnsweredRight = [];
                 displayQuestion(quiz.content[tempI], msg.channel);
               }, ((previousQuestionTime + previousTime + (i - 1) * pauseTime) - 5) * 1000);
               previousTime = previousTime + previousQuestionTime;
