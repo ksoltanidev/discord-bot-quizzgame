@@ -9,7 +9,6 @@ const SOSOH_ID = process.env.SOSOH_ID;
 const CHARI_ID = process.env.CHARI_ID;
 const EVIDIA_ID = process.env.EVIDIA_ID;
 
-
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
 var state = false;
@@ -51,7 +50,7 @@ bot.on('message', msg => {
   //GAME MASTER
   if (msg.author.id == GOLDMASTER_ID) {
     //Dis Machin
-    if (msg.content.toLowerCase().startsWith("robert dis ") && msg.content.split(' ').length >= 3) {
+    if (msg.content.toLowerCase().startsWith("robert, dis ") && msg.content.split(' ').length >= 3) {
       console.log(msg.content.substring(11).toLowerCase());
       if (msg.content.substring(11).toLowerCase() == "bonjour à tout le monde")
       msg.channel.send("Bonjour @everyone ! Moi, c'est Robert ! ");
@@ -59,15 +58,14 @@ bot.on('message', msg => {
       msg.channel.send("Bonsoir @everyone ! Moi, c'est Robert ! ");
       else msg.channel.send(msg.content.substring(11));
     }
-    else if (msg.content.toLowerCase().startsWith("robert insulte") && msg.mentions.users.array().length >= 1) {
+    else if (msg.content.toLowerCase().startsWith("robert, insulte") && msg.mentions.users.array().length >= 1) {
       msg.mentions.users.forEach(u => {
-
         let insult = ":middle_finger: <@" + u.id + "> :middle_finger:";
         msg.channel.send(insult);
       })
     }
     //PLAY QUIZZ
-    else if (msg.content.toLowerCase().startsWith("robert play") && msg.content.split(' ').length == 3) {
+    else if (msg.content.toLowerCase().startsWith("robert, play") && msg.content.split(' ').length == 3) {
       if (!state) {
         try {
           const quizFile = fs.readFileSync(msg.content.split(' ')[2] + '.json', 'utf8');
