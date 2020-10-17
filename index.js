@@ -47,102 +47,104 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 bot.on('message', msg => {
-  //GAME MASTER
-  if (msg.author.id == GOLDMASTER_ID) {
-    //Dis Machin
-    if (msg.content.toLowerCase().startsWith("robert, dis ") && msg.content.split(' ').length >= 3) {
-      console.log(msg.content.substring(11).toLowerCase());
-      if (msg.content.substring(11).toLowerCase() == "bonjour à tout le monde")
-      msg.channel.send("Bonjour @everyone ! Moi, c'est Robert ! ");
-      else if (msg.content.substring(11).toLowerCase() == "bonsoir à tout le monde")
-      msg.channel.send("Bonsoir @everyone ! Moi, c'est Robert ! ");
-      else msg.channel.send(msg.content.substring(11));
-    }
-    else if (msg.content.toLowerCase().startsWith("robert, insulte") && msg.mentions.users.array().length >= 1) {
-      msg.mentions.users.forEach(u => {
-        let insult = ":middle_finger: <@" + u.id + "> :middle_finger:";
-        msg.channel.send(insult);
-      })
-    }
-    //PLAY QUIZZ
-    else if (msg.content.toLowerCase().startsWith("robert, play") && msg.content.split(' ').length == 3) {
-      if (!state) {
-        try {
-          const quizFile = fs.readFileSync(msg.content.split(' ')[2] + '.json', 'utf8');
-          //init
-          state = true;
-          scores = {};
-          questionMsgId = null;
-          currentQuestionNumber = 0;
-          quiz = JSON.parse(quizFile);
-          //QUESTIONS :
-          var i = 1;
-          var previousTime = 0;
-          var previousQuestionTime = 10; //timer before first question
-          var pauseTime = quiz.pauses;
+  if (bot.id != msg.author.id) {
+    //GAME MASTER
+    if (msg.author.id == GOLDMASTER_ID) {
+      //Dis Machin
+      if (msg.content.toLowerCase().startsWith("robert, dis ") && msg.content.split(' ').length >= 3) {
+        console.log(msg.content.substring(12).toLowerCase());
+        if (msg.content.substring(12).toLowerCase() == "bonjour à tout le monde")
+          msg.channel.send("Bonjour @everyone ! Moi, c'est Robert ! J'aime beaucoup les Quizz !");
+        else if (msg.content.substring(12).toLowerCase() == "bonsoir à tout le monde")
+          msg.channel.send("Bonsoir @everyone ! Moi, c'est Robert ! J'aime beaucoup les Quizz !");
+        else msg.channel.send(msg.content.substring(12));
+      }
+      else if (msg.content.toLowerCase().startsWith("robert, insulte") && msg.mentions.users.array().length >= 1) {
+        msg.mentions.users.forEach(u => {
+          let insult = ":middle_finger: <@" + u.id + "> :middle_finger:";
+          msg.channel.send(insult);
+        })
+      }
+      //PLAY QUIZZ
+      else if (msg.content.toLowerCase().startsWith("robert, play") && msg.content.split(' ').length == 3) {
+        if (!state) {
+          try {
+            const quizFile = fs.readFileSync(msg.content.split(' ')[2] + '.json', 'utf8');
+            //init
+            state = true;
+            scores = {};
+            questionMsgId = null;
+            currentQuestionNumber = 0;
+            quiz = JSON.parse(quizFile);
+            //QUESTIONS :
+            var i = 1;
+            var previousTime = 0;
+            var previousQuestionTime = 10; //timer before first question
+            var pauseTime = quiz.pauses;
 
-          //SEND TITLE:
-          msg.channel.send("**Le Quiz '" + quiz.title + "' va commencer dans " + previousQuestionTime + " secondes !**"
-            + "\n*Attention : les réactions(réponses) avant que les questions ne s'affichent entièrement ne sont pas comptabilisées.*");
-          //GAME START:
+            //SEND TITLE:
+            msg.channel.send("**Le Quiz '" + quiz.title + "' va commencer dans " + previousQuestionTime + " secondes !**"
+              + "\n*Attention : les réactions(réponses) avant que les questions ne s'affichent entièrement ne sont pas comptabilisées.*");
+            //GAME START:
 
-          //Sending Questions :
-          while (quiz.content[i] != null) {
-            new Promise(function (resolve, reject) {
-              var tempI = i;
-              setTimeout(function () {
-                //Display Question 
-                currentQuestionNumber = tempI;
-                listOfPlayersWhoAnswered = [];
-                listOfPlayersWhoAnsweredRight = [];
-                displayQuestion(quiz.content[tempI], msg.channel);
-              }, ((previousQuestionTime + previousTime + (i - 1) * pauseTime) - 5) * 1000);
-              previousTime = previousTime + previousQuestionTime;
-              previousQuestionTime = quiz.content[i].temps;
-              setTimeout(function () {
-                //Display Scores
-                answserTime = false;
-                displayScore(msg.channel);
-              }, (previousQuestionTime + previousTime + (i - 1) * pauseTime) * 1000);
-            });
-            i++;
+            //Sending Questions :
+            while (quiz.content[i] != null) {
+              new Promise(function (resolve, reject) {
+                var tempI = i;
+                setTimeout(function () {
+                  //Display Question 
+                  currentQuestionNumber = tempI;
+                  listOfPlayersWhoAnswered = [];
+                  listOfPlayersWhoAnsweredRight = [];
+                  displayQuestion(quiz.content[tempI], msg.channel);
+                }, ((previousQuestionTime + previousTime + (i - 1) * pauseTime) - 5) * 1000);
+                previousTime = previousTime + previousQuestionTime;
+                previousQuestionTime = quiz.content[i].temps;
+                setTimeout(function () {
+                  //Display Scores
+                  answserTime = false;
+                  displayScore(msg.channel);
+                }, (previousQuestionTime + previousTime + (i - 1) * pauseTime) * 1000);
+              });
+              i++;
+            }
+            setTimeout(function () {
+              //END of Game
+              state = false;
+              msg.channel.send("**Fin du Quiz !**");
+              displayFullScores(msg.channel);
+            }, (previousQuestionTime + previousTime + (i - 1) * pauseTime) * 1000);
           }
-          setTimeout(function () {
-            //END of Game
-            state = false;
-            msg.channel.send("**Fin du Quiz !**");
-            displayFullScores(msg.channel);
-          }, (previousQuestionTime + previousTime + (i - 1) * pauseTime) * 1000);
-        }
-        catch (exception) {
-          console.log(exception);
+          catch (exception) {
+            console.log(exception);
+          }
         }
       }
-    }
-  } else if (msg.author.id == BARTHIKORN_ID) {
-    if (msg.content.toLowerCase().startsWith("robert")) {
-      msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître ! D'ailleurs, rends moi la guilde !");
-    }
-  } else if (msg.author.id == SOSOH_ID) {
-    if (msg.content.toLowerCase().startsWith("robert")) {
+    } else if (msg.author.id == BARTHIKORN_ID) {
+      if (msg.content.toLowerCase().startsWith("robert")) {
+        msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître ! D'ailleurs, rends moi la guilde !");
+      }
+    } else if (msg.author.id == SOSOH_ID) {
+      if (msg.content.toLowerCase().startsWith("robert")) {
+        msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
+      }
+    } else if (msg.author.id == CHARI_ID) {
+      if (msg.content.toLowerCase().startsWith("robert")) {
+        msg.channel.send(":chari: :chari: :chari:");
+      }
+    } else if (msg.author.id == EVIDIA_ID) {
+      if (msg.content.toLowerCase().includes("bonjour") || msg.content.toLowerCase().includes("salut") || msg.content.toLowerCase().includes("coucou")) {
+        msg.channel.send("Bonjour <@" + EVIDIA_ID + ">! Vous êtes charmante aujourd'hui !");
+      }
+      if (msg.content.toLowerCase().includes("ça va") || msg.content.toLowerCase().includes("ca va") || msg.content.toLowerCase().includes("sa va")
+        || msg.content.toLowerCase().includes("tu vas bien")
+        || msg.content.toLowerCase().includes("tu va bien")
+        || msg.content.toLowerCase().includes("comment tu va")) {
+        msg.channel.send("Je me porte à merveille ! Et vous <@" + EVIDIA_ID + "> ?");
+      }
+    } else if (msg.content.toLowerCase().startsWith("robert")) {
       msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
     }
-  } else if (msg.author.id == CHARI_ID) {
-    if (msg.content.toLowerCase().startsWith("robert")) {
-      msg.channel.send(":chari: :chari: :chari:");
-    }
-  } else if (msg.author.id == EVIDIA_ID) {
-    if (msg.content.toLowerCase().includes("bonjour") || msg.content.toLowerCase().includes("salut") || msg.content.toLowerCase().includes("coucou")) {
-      msg.channel.send("Bonjour <@" + EVIDIA_ID + ">! Vous êtes charmante aujourd'hui !");
-    }
-    if (msg.content.toLowerCase().includes("ça va") || msg.content.toLowerCase().includes("ca va") || msg.content.toLowerCase().includes("sa va")
-      || msg.content.toLowerCase().includes("tu vas bien")
-      || msg.content.toLowerCase().includes("tu va bien")
-      || msg.content.toLowerCase().includes("comment tu va")) {
-      msg.channel.send("Je me porte à merveille ! Et vous <@" + EVIDIA_ID + "> ?");
-    }
-  } else if (msg.content.toLowerCase().startsWith("robert")) {
-    msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
   }
 
 });
