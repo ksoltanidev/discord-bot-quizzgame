@@ -47,7 +47,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 bot.on('message', msg => {
-  if (bot.id != msg.author.id) {
+  if (bot.user.id != msg.author.id) {
     //GAME MASTER
     if (msg.author.id == GOLDMASTER_ID) {
       //Dis Machin
