@@ -2,10 +2,9 @@ const Discord = require('discord.js');
 fs = require('fs');
 
 const bot = new Discord.Client();
-//const TOKEN = process.env.TOKEN;
-//const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
-const TOKEN = "NDAzOTE1NDU4NTI2NDQ1NTc4.XoEQ6g.HfmT5YI5a2TrF423XEP0zPzwt88";
-const GOLDMASTER_ID = "202846457030508544";
+const TOKEN = process.env.TOKEN;
+const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
+
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
 var state = false;
@@ -46,11 +45,15 @@ bot.on('messageReactionAdd', (reaction, user) => {
 bot.on('message', msg => {
   //GAME MASTER
   if (msg.author.id == GOLDMASTER_ID) {
-    //GIVE X BALANCE
-    if (msg.content.startsWith("!play") && msg.content.split(' ').length == 2) {
+    //Dis Machin
+    if (msg.content.startsWith("Robert dis") && msg.content.split(' ').length >= 3) {
+      msg.channel.send(msg.content.substring(10));
+    }
+    //PLAY QUIZZ
+    if (msg.content.startsWith("Robert play") && msg.content.split(' ').length == 3) {
       if (!state) {
         try {
-          const quizFile = fs.readFileSync(msg.content.split(' ')[1] + '.json', 'utf8');
+          const quizFile = fs.readFileSync(msg.content.split(' ')[2] + '.json', 'utf8');
           //init
           state = true;
           scores = {};

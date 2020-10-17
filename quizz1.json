@@ -1,0 +1,333 @@
+{
+    "title":"Quiz de Test",
+    "pauses":20,
+    "content":{
+        "1":{
+            "question":"Quel est le grade militaire le plus élevé au sein de l’Alliance ?",
+            "numero": 1,
+            "reponses":{
+                "1":"Grand Seigneur de Guerre",
+                "2":"Connétable",
+                "3":"Grand Maraîcher",
+                "4":"Grand Maréchal"
+            },
+            "result":2,
+            "temps":15
+        },
+        "2":{
+            "question":"Qui est la plus grosse victime d'Orgrimmar ?",
+            "numero": 2,
+            "reponses":{
+                "1":"Gamon",
+                "2":"Goman",
+                "3":"Visnelda"
+            },
+            "result":1,
+            "temps":15
+        },
+        "3":{
+            "question":"Combien existe t-il de clans nains ?",
+            "numero": 3,
+            "reponses":{
+                "1":"1",
+                "2":"2",
+                "3":"3",
+                "4":"4"
+            },
+            "result":3,
+            "temps":15
+        },
+        "4":{
+            "question":"De quels héros de la Horde Thrall tient-il son marteau ?",
+            "numero": 4,
+            "reponses":{
+                "1":"Gul'dan",
+                "2":"Orgrim",
+                "3":"Durotan",
+                "4":"Thrall"
+            },
+            "result":2,
+            "temps":15
+        },
+        "5":{
+            "question": "Comment se nomme le fils de Cairne Sabot-de-Sang ?",
+            "numero": 5,
+            "reponses":{
+                "1":"Ahmo Sabot-de-Sang",
+                "2":"Cairne Sabot-de-Sang",
+                "3":"Baine Sabot-de-Sang",
+                "4":"Mais c'est qui ce con ?!!"
+            },
+            "result":3,
+            "temps":15
+        },
+        "6":{
+            "question":"Comment se nommait le père de Thrall ?",
+            "numero": 6,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "8":{
+            "question":"Quel est le nom de la divinité adorée par les Kaldorei aussi connu comme Elfe de la Nuit ",
+            "numero": 8,
+            "reponses":{
+                "1":"Élune",
+                "2":"Archimonde",
+                "3":"Naaru",
+                "4":"Tyrande"
+            },
+            "result":1,
+            "temps":15
+        },
+        "9":{
+            "question":"Quel horrible Gnoll met en déroute la totalité de la garde de la forêt d’Elwynn depuis des lustres ?",
+            "numero": 9,
+            "reponses":{
+                "1":"Lardon",
+                "2":"Darlon",
+                "3":"Lardure",
+                "4":"Lardeur"
+            },
+            "result":4,
+            "temps":15
+        },
+        "10":{
+            "question":"Comment se nomme le plus fidèle compagnon du Mok’natal Rexxar ?",
+            "numero": 10,
+            "reponses":{
+                "1":"Misha",
+                "2":"Mishou",
+                "3":"Mashou",
+                "4":"Masha"
+            },
+            "result":1,
+            "temps":15
+        },
+        "11":{
+            "question":"Quel est le nom du monde originel des orcs ?",
+            "numero": 11,
+            "reponses":{
+                "1":"Forêt de Terrokar",
+                "2":"Nagrand",
+                "3":"Marecage de Zangdar",
+                "4":"Les Tranchantes"
+            },
+            "result":2,
+            "temps":15
+        },
+        "12":{
+            "question":"Comment les trolls nomment-ils les divinités leurs en accordant leurs pouvoirs mystiques et Voodoo ?",
+            "numero": 12,
+            "reponses":{
+                "1":"Les grands Voodoos",
+                "2":"Les Loas",
+                "3":"Les Toas",
+                "4":"Les Shirvallah"
+            },
+            "result":2,
+            "temps":15
+        },
+        "13":{
+            "question":"Quel est le nom de la légendaire lame détenue par le Généralissime de l’Aube d’Argent ?",
+            "numero": 13,
+            "reponses":{
+                "1":"Porte cendres",
+                "2":"Porte mort",
+                "3":"Porte avions",
+                "4":"Deuillegivre",
+                "5":"Deuillelombre"
+            },
+            "result":1,
+            "temps":15
+        },
+        "14":{
+            "question":"A l’aide de quelle épée légendaire Arthas exécuta son défunt père Therenas Menethil ?",
+            "numero": 14,
+            "reponses":{
+                "1":"Porte cendres",
+                "2":"Porte mort",
+                "3":"Porte avions",
+                "4":"Deuillegivre",
+                "5":"Deuillelombre"
+            },
+            "result":4,
+            "temps":15
+        },
+        "15":{
+            "question":"cccc",
+            "numero": 15,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "16":{
+            "question":"cccc",
+            "numero": 16,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "17":{
+            "question":"cccc",
+            "numero": 17,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "18":{
+            "question":"cccc",
+            "numero": 18,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "19":{
+            "question":"cccc",
+            "numero": 19,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "20":{
+            "question":"cccc",
+            "numero": 20,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "21":{
+            "question":"cccc",
+            "numero": 21,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "22":{
+            "question":"cccc",
+            "numero": 22,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "23":{
+            "question":"cccc",
+            "numero": 23,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "24":{
+            "question":"cccc",
+            "numero": 24,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "25":{
+            "question":"cccc",
+            "numero": 25,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        },
+        "26":{
+            "question":"cccc",
+            "numero": 26,
+            "reponses":{
+                "1":"Grommash",
+                "2":"Grosstash",
+                "3":"Durotan",
+                "4":"Dorutan",
+                "5":"Darotun",
+                "6":"Duracell"
+            },
+            "result":3,
+            "temps":15
+        }
+    }
+}
