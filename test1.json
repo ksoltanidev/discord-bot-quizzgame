@@ -45,7 +45,7 @@
                 "1":"Hardy",
                 "2":"Juliette"
             },
-            "result":1,
+            "result":2,
             "temps":10
         },
         "5":{
@@ -55,7 +55,7 @@
                 "1":"Hardy",
                 "2":"Juliette"
             },
-            "result":2,
+            "result":1,
             "temps":10
         },
         "6":{
@@ -65,7 +65,7 @@
                 "1":"Hardy",
                 "2":"Juliette"
             },
-            "result":2,
+            "result":1,
             "temps":10,
             "troll":true
         }
