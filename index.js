@@ -4,6 +4,11 @@ fs = require('fs');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
+const BARTHIKORN_ID = process.env.BARTHIKORN_ID;
+const SOSOH_ID = process.env.SOSOH_ID;
+const CHARI_ID = process.env.CHARI_ID;
+const EVIDIA_ID = process.env.EVIDIA_ID;
+
 
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
@@ -46,11 +51,23 @@ bot.on('message', msg => {
   //GAME MASTER
   if (msg.author.id == GOLDMASTER_ID) {
     //Dis Machin
-    if (msg.content.startsWith("Robert dis") && msg.content.split(' ').length >= 3) {
-      msg.channel.send(msg.content.substring(10));
+    if (msg.content.toLowerCase().startsWith("robert dis ") && msg.content.split(' ').length >= 3) {
+      console.log(msg.content.substring(11).toLowerCase());
+      if (msg.content.substring(11).toLowerCase() == "bonjour à tout le monde")
+      msg.channel.send("Bonjour @everyone ! Moi, c'est Robert ! ");
+      else if (msg.content.substring(11).toLowerCase() == "bonsoir à tout le monde")
+      msg.channel.send("Bonsoir @everyone ! Moi, c'est Robert ! ");
+      else msg.channel.send(msg.content.substring(11));
+    }
+    else if (msg.content.toLowerCase().startsWith("robert insulte") && msg.mentions.users.array().length >= 1) {
+      msg.mentions.users.forEach(u => {
+
+        let insult = ":middle_finger: <@" + u.id + "> :middle_finger:";
+        msg.channel.send(insult);
+      })
     }
     //PLAY QUIZZ
-    if (msg.content.startsWith("Robert play") && msg.content.split(' ').length == 3) {
+    else if (msg.content.toLowerCase().startsWith("robert play") && msg.content.split(' ').length == 3) {
       if (!state) {
         try {
           const quizFile = fs.readFileSync(msg.content.split(' ')[2] + '.json', 'utf8');
@@ -104,7 +121,32 @@ bot.on('message', msg => {
         }
       }
     }
+  } else if (msg.author.id == BARTHIKORN_ID) {
+    if (msg.content.toLowerCase().startsWith("robert")) {
+      msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître ! D'ailleurs, rends moi la guilde !");
+    }
+  } else if (msg.author.id == SOSOH_ID) {
+    if (msg.content.toLowerCase().startsWith("robert")) {
+      msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
+    }
+  } else if (msg.author.id == CHARI_ID) {
+    if (msg.content.toLowerCase().startsWith("robert")) {
+      msg.channel.send(":chari: :chari: :chari:");
+    }
+  } else if (msg.author.id == EVIDIA_ID) {
+    if (msg.content.toLowerCase().includes("bonjour") || msg.content.toLowerCase().includes("salut") || msg.content.toLowerCase().includes("coucou")) {
+      msg.channel.send("Bonjour <@" + EVIDIA_ID + ">! Vous êtes charmante aujourd'hui !");
+    }
+    if (msg.content.toLowerCase().includes("ça va") || msg.content.toLowerCase().includes("ca va") || msg.content.toLowerCase().includes("sa va")
+      || msg.content.toLowerCase().includes("tu vas bien")
+      || msg.content.toLowerCase().includes("tu va bien")
+      || msg.content.toLowerCase().includes("comment tu va")) {
+      msg.channel.send("Je me porte à merveille ! Et vous <@" + EVIDIA_ID + "> ?");
+    }
+  } else if (msg.content.toLowerCase().startsWith("robert")) {
+    msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
   }
+
 });
 
 function displayFullScores(channel) {
@@ -201,3 +243,4 @@ function displayQuestion(qObject, channel) {
       console.log(err);
     });
 }
+
