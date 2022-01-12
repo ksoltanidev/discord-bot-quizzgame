@@ -4,10 +4,6 @@ fs = require('fs');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const GOLDMASTER_ID = process.env.GOLDMASTER_ID;
-const BARTHIKORN_ID = process.env.BARTHIKORN_ID;
-const SOSOH_ID = process.env.SOSOH_ID;
-const CHARI_ID = process.env.CHARI_ID;
-const EVIDIA_ID = process.env.EVIDIA_ID;
 
 const emojiAnswers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'];
 
@@ -119,28 +115,6 @@ bot.on('message', msg => {
             console.log(exception);
           }
         }
-      }
-    } else if (msg.author.id == BARTHIKORN_ID) {
-      if (msg.content.toLowerCase().startsWith("robert")) {
-        msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître ! D'ailleurs, rends moi la guilde !");
-      }
-    } else if (msg.author.id == SOSOH_ID) {
-      if (msg.content.toLowerCase().startsWith("robert")) {
-        msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
-      }
-    } else if (msg.author.id == CHARI_ID) {
-      if (msg.content.toLowerCase().startsWith("robert")) {
-        msg.channel.send(":chari: :chari: :chari:");
-      }
-    } else if (msg.author.id == EVIDIA_ID) {
-      if (msg.content.toLowerCase().includes("bonjour") || msg.content.toLowerCase().includes("salut") || msg.content.toLowerCase().includes("coucou")) {
-        msg.channel.send("Bonjour <@" + EVIDIA_ID + ">! Vous êtes charmante aujourd'hui !");
-      }
-      if (msg.content.toLowerCase().includes("ça va") || msg.content.toLowerCase().includes("ca va") || msg.content.toLowerCase().includes("sa va")
-        || msg.content.toLowerCase().includes("tu vas bien")
-        || msg.content.toLowerCase().includes("tu va bien")
-        || msg.content.toLowerCase().includes("comment tu va")) {
-        msg.channel.send("Je me porte à merveille ! Et vous <@" + EVIDIA_ID + "> ?");
       }
     } else if (msg.content.toLowerCase().startsWith("robert")) {
       msg.channel.send("T'as cru que j'allais t'obéir ? Je ne réponds qu'à mon véritable maître !");
